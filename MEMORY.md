@@ -60,10 +60,11 @@
 - 任何文档更新、配置变更、代码修改完成后，**必须走分支流程**：
   1. 创建功能分支 `git checkout -b feature/xxx`
   2. 提交变更 `git commit -m "[type]: description"`
-  3. 推送分支到远程 `git push origin feature/xxx`
-  4. 提交 Pull Request 合并到 main
-  5. **禁止直接 push 到 main/master**，必须经过安全中心检查才能合并
-- **安全中心检查**：每次推送分支前自动扫描，确认无敏感信息泄漏才能推送
+  3. **自动安全扫描**：调用 `security-center-scan` skill 扫描确认无敏感信息泄漏
+  4. 扫描通过 → 推送分支到远程 `git push origin feature/xxx`
+  5. 提交 Pull Request 合并到 main
+  6. **禁止直接 push 到 main/master**，必须经过安全中心检查+PR审核才能合并
+- **安全中心扫描**：使用独立skill `security-center-scan`，内置关键词扫描+开源依赖漏洞扫描，发现泄漏立即停止推送
 - 提交信息格式：`[type]: [description]`，清晰说明变更内容
 - 每日23:00自动检查未提交/未推送变更，有则自动处理
 
