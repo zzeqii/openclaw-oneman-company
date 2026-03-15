@@ -1,0 +1,10 @@
+{
+  "lastRun": "2026-03-15T14:02:05+08:00",
+  "monitorSource": "github.com/openclaw/skills",
+  "officialSkillRepo": "https://github.com/openclaw/skills.git",
+  "status": "operational",
+  "totalSkillsInRepo": 167548,
+  "lastSkillCount":        5,
+  "installedSkills": ["afrexai-business-automation","afrexai-productivity-system","abandoned-checkout-monitor","afrexai-business-continuity","business-intelligence"],
+  "rateLimitReset": "2026-03-15T15:02:06+08:00"
+}

@@ -1,0 +1,43 @@
+[tool.poetry]
+name = "coze-feature-engineering"
+version = "0.1.0"
+description = "Coze自动策略Agent特征工程模块"
+authors = ["Your Name <your.email@example.com>"]
+readme = "README.md"
+packages = [{ include = "src" }]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pandas = "^2.1.0"
+numpy = "^1.26.0"
+scikit-learn = "^1.3.0"
+lightgbm = "^4.1.0"
+xgboost = "^2.0.0"
+matplotlib = "^3.8.0"
+seaborn = "^0.13.0"
+pydantic = "^2.0.0"
+fastapi = "^0.100.0"
+uvicorn = "^0.23.0"
+python-multipart = "^0.0.6"
+openpyxl = "^3.1.0"
+scipy = "^1.11.0"
+category-encoders = "^2.6.0"
+tqdm = "^4.66.0"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+
+[tool.black]
+line-length = 120
+target-version = ["py311"]
+
+[build-system]
+requires = ["poetry-core==1.7.0"]
+build-backend = "poetry.core.masonry.api"

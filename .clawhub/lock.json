@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "skills": {
+    "afrexai-business-automation": {
+      "version": "1.0.0",
+      "installedAt": 1773478624015
+    },
+    "afrexai-productivity-system": {
+      "version": "1.0.0",
+      "installedAt": 1773478681722
+    },
+    "abandoned-checkout-monitor": {
+      "version": "0.1.1",
+      "installedAt": 1773479055947
+    },
+    "afrexai-business-continuity": {
+      "version": "1.0.0",
+      "installedAt": 1773486062584
+    },
+    "business-intelligence": {
+      "version": "1.0.0",
+      "installedAt": 1773486122844
+    }
+  }
+}

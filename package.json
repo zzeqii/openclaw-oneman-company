@@ -1,0 +1,33 @@
+{
+  "name": "oneman-company",
+  "version": "1.0.0",
+  "description": "一个人就是一家公司 —— 基于OpenClaw的全栈AI自动化操作系统",
+  "main": "paperclip_daemon.js",
+  "scripts": {
+    "start": "node paperclip_daemon.js & openclaw start",
+    "daemon": "node paperclip_daemon.js",
+    "sync": "git add . && git commit -m \"chore: sync project updates\" && git push",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "openclaw",
+    "ai-agent",
+    "automation",
+    "one-man-company",
+    "productivity"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zzeqii/oneman-company.git"
+  },
+  "dependencies": {
+    "@volcengine/ark": "^1.0.1",
+    "axios": "^1.6.7",
+    "cheerio": "^1.0.0-rc.12",
+    "iconv-lite": "^0.7.2",
+    "node-fetch": "^3.3.2",
+    "puppeteer": "^24.39.1"
+  }
+}

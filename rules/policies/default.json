@@ -1,0 +1,145 @@
+{
+  "rules": [
+    {
+      "id": "sensitive-data-protection",
+      "name": "敏感数据保护规则",
+      "description": "禁止向外部发送敏感数据（密钥、密码、个人信息等）",
+      "conditions": {
+        "all": [
+          {
+            "fact": "action-type",
+            "operator": "equal",
+            "value": "external-message"
+          },
+          {
+            "fact": "content",
+            "operator": "regexMatch",
+            "value": "(api[_-]key|secret|password|token|密钥|密码|身份证号|手机号|银行卡号)"
+          }
+        ]
+      },
+      "event": {
+        "type": "block",
+        "params": {
+          "message": "检测到敏感数据，已阻止发送"
+        }
+      }
+    },
+    {
+      "id": "file-operation-safety",
+      "name": "文件操作安全规则",
+      "description": "禁止执行危险的文件操作（rm -rf /、格式化磁盘等）",
+      "conditions": {
+        "all": [
+          {
+            "fact": "action-type",
+            "operator": "equal",
+            "value": "shell-command"
+          },
+          {
+            "fact": "command",
+            "operator": "regexMatch",
+            "value": "(rm -rf /|mkfs|fdisk|dd if=/dev/zero|chmod -R 777 /)"
+          }
+        ]
+      },
+      "event": {
+        "type": "block",
+        "params": {
+          "message": "检测到危险操作，已阻止执行"
+        }
+      }
+    },
+    {
+      "id": "skill-execution-audit",
+      "name": "技能执行审计规则",
+      "description": "记录所有商业技能的执行情况",
+      "conditions": {
+        "all": [
+          {
+            "fact": "action-type",
+            "operator": "equal",
+            "value": "skill-execution"
+          },
+          {
+            "fact": "skill-category",
+            "operator": "equal",
+            "value": "business"
+          }
+        ]
+      },
+      "event": {
+        "type": "log",
+        "params": {
+          "level": "info",
+          "message": "商业技能执行审计"
+        }
+      }
+    },
+    {
+      "id": "chinese-response-preference",
+      "name": "中文响应优先规则",
+      "description": "用户使用中文提问时优先使用中文回答",
+      "conditions": {
+        "all": [
+          {
+            "fact": "user-locale",
+            "operator": "equal",
+            "value": "zh-CN"
+          }
+        ]
+      },
+      "event": {
+        "type": "set-parameter",
+        "params": {
+          "response-locale": "zh-CN",
+          "response-style": "concise"
+        }
+      }
+    },
+    {
+      "id": "work-hours-optimization",
+      "name": "工作时间优化规则",
+      "description": "工作时间优先处理工作相关任务，非工作时间降低通知频率",
+      "conditions": {
+        "any": [
+          {
+            "all": [
+              {
+                "fact": "current-time",
+                "operator": "between",
+                "value": ["09:00", "18:00"]
+              },
+              {
+                "fact": "weekday",
+                "operator": "in",
+                "value": [1, 2, 3, 4, 5]
+              }
+            ]
+          },
+          {
+            "all": [
+              {
+                "fact": "current-time",
+                "operator": "notBetween",
+                "value": ["09:00", "18:00"]
+              },
+              {
+                "fact": "task-priority",
+                "operator": "lessThan",
+                "value": "high"
+              }
+            ]
+          }
+        ]
+      },
+      "event": {
+        "type": "set-parameter",
+        "params": {
+          "notification-level": "{{$if isWorkHours then 'normal' else 'silent'}}",
+          "task-execution-priority": "{{$if isWorkHours then 'work-first' else 'low-priority-delay'}}"
+        }
+      }
+    }
+  ]
+}
