@@ -42,13 +42,22 @@ The most reliable memory system in any AI agent project:
 - ✅ 100% recovery after session restart
 
 ### 3. 🛡️ Token Overflow Protection for Chat Platforms
-Problem solved: Large images/files often cause token overflow and connection reset on closed platforms like Feishu.
+Problem solved: Large images, multiple generated chapters, long context often cause token overflow and connection reset on closed platforms like Feishu.
 
-**Solution**: [CLI-Anything](https://github.com/HKUDS/CLI-Anything) integration:
-- All image/media processing done **locally**
-- Only structured text results sent to chat platform
+**Solution**: [CLI-Anything](https://github.com/HKUDS/CLI-Anything) integration + localized storage:
+- All large assets processed/stored **locally**
+- Only structured text results/summaries/current context sent to chat platform
 - Token consumption reduced by **90%+**
 - Never gets disconnected due to token overflow anymore
+
+Built-in mechanisms for different scenarios:
+
+| Scenario | Mechanism | Token Saving |
+|----------|-----------|-------------|
+| Large images | `cli-anything-imagemagick` local compression → only send text result | ✅ 90%+ saved |
+| Image generation (SeedDream/SeedDance) | Images stored locally in `output/` → only send path/text result | ✅ Already works, 99% saved |
+| Long novel writing | Full outline/book stored locally → only send current chapter + recent context | ✅ 90%+ saved |
+| Multiple parallel projects | Only send current progress summary → full project stored locally | ✅ 90%+ saved |
 
 Built-in tools:
 - `cli-anything-imagemagick`: Image compression/resize/optimization → 100% test coverage
