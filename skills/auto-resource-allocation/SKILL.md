@@ -1,35 +1,50 @@
+---
+name: auto-resource-allocation
+description: Automatic parallel project scheduling with dynamic priority-based resource allocation. Guarantees interactive responsiveness even when multiple background projects are running.
+---
+
 # auto-resource-allocation
-> **全自动资源分配调度skill**，保证系统负载在安全范围内，最大化利用空闲资源，多项目并行推进，提升完成效率，是one-man-company高效运行核心能力。
 
-## 核心能力
-- **自动负载检测**：实时检测系统CPU/内存负载，计算空余资源
-- **动态分配任务**：根据空余资源自动分配任务，保证质量前提下最大化并行
-- **优先级调度**：高优先级项目优先分配资源，低优先级排队自动推进
-- **质量保证**：每个项目分配足够资源保证质量，不因为并行降低质量
-- **自动进度汇报**：每个项目阶段性完成自动汇报，不用人工催促
+Automatic parallel project scheduling - dynamically allocate resources based on priority, guarantee interactive responsiveness for user queries.
 
-## 调度规则
-1. **负载阈值**：CPU < 70%，内存 < 80%，认定有空余资源，可以新增项目
-2. **项目优先级**：
-   - P0：用户要求立即推进的高优先级项目 → 优先分配全部空余资源
-   - P1：正常推进项目 → 平均分配资源，按计划推进
-   - P2：低优先级等待项目 → 有空余资源自动推进，没有就等
-3. **多项目并行**：当前系统负载极低（CPU 3.68%，内存使用率 15/16GB = 93%，缓存占用不影响任务执行），支持同时并行 **5-6个项目**，充分利用资源
-4. **自动汇报规则**：每个项目完成一个阶段性成果（写完一章小说/开发完一个模块/生成完一批素材），**自动主动汇报**，不需要用户催促
+## Core Features
 
-## Usage
-全自动运行，不需要人工干预，启动一次，持续调度：
-```
-1. 启动 → 2. 检测负载 → 3. 分配任务 → 4. 完成阶段性成果 → 5. 自动汇报 → 6. 分配下一个任务
-```
+- **Unlimited parallel projects**: Not limited to 7 projects, supports any number of parallel projects
+- **Dynamic priority allocation**: High-priority user-facing tasks get resources first
+- **Interactive responsiveness guarantee**: Always reserves sufficient CPU/memory for immediate response to user queries
+- **Automatic deadline tracking**: Integrated with `deadline-monitor` for graduated reminders
+- **Automatic progress tracking**: Tracks completion percentage for all projects
+- **Background batch processing**: Non-urgent tasks processed in background when user idle
 
-## 质量保证
-- 每个项目保证足够资源，不抢资源，不降低质量
-- 优先级高的项目优先，保证高优先级尽快完成
-- 充分利用空余资源，不浪费算力，最大化完成效率
-- 自动汇报，阶段性成果主动推送，不需要用户问
+## Key Guarantee
 
-## 适配one-man-company
-- 作为通用核心skill，所有项目自动调度，提升整体效率
-- 充分利用系统空余资源，保证一天完成更多工作
-- GitHub展示全自动调度能力，体现one-man-company完整闭环自动化，提升核心竞争力
+> When user sends a new message, the system always pauses background processing to respond immediately. No waiting, no lag.
+
+## Priority Levels
+
+| Level | Type | Resource Allocation |
+|-------|------|-------------------|
+| P0 | User interactive query | 100% resource immediately |
+| P1 | High-priority project | High resource allocation, can be preempted by P0 |
+| P2 | Normal project | Medium resource allocation, preemptible |
+| P3 | Background maintenance | Low resource allocation, only when idle |
+
+## Workflow
+
+1. When new task arrives, assess priority
+2. Allocate resources according to priority level
+3. P0 always preempts lower priority tasks
+4. After user interaction completes, resume background tasks
+5. Track progress and update daily
+
+## When to Use
+
+- Multiple projects being developed in parallel
+- Need to guarantee user gets response immediately
+- Background automated tasks can wait for idle time
+
+## Integration
+
+- Integrates with `deadline-monitor` for deadline reminders
+- Integrates with `auto-learning` for continuous improvement of scheduling
+- Follows Git flow for all project changes
