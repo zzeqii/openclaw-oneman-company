@@ -49,6 +49,14 @@ memory/*.md
 # Project sensitive data
 # Custom projects are not committed to public repo
 # Template projects stay, custom user projects are ignored
+
+# Top-level private directories
+项目库/
+知识库/
+安全中心/
+参考资料/
+临时文件/
+
 项目库/*/*/私密/
 项目库/*/*/未公开/
 # Ignore all user custom projects that are not templates
