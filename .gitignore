@@ -47,7 +47,13 @@ memory/*.md
 !memory/README.md
 
 # Project sensitive data
-项目库/草稿/
-项目库/*/私密/
-项目库/*/未公开/
+# Custom projects are not committed to public repo
+# Template projects stay, custom user projects are ignored
+项目库/*/*/私密/
+项目库/*/*/未公开/
+# Ignore all user custom projects that are not templates
+!项目库/README.md
+项目库/AI音乐自媒体/
+项目库/晋江文学小说/
+项目库/AI工具开发/
 
