@@ -1,0 +1,13 @@
+setup.py
+cli_anything/imagemagick/__init__.py
+cli_anything/imagemagick/__main__.py
+cli_anything/imagemagick/imagemagick_cli.py
+cli_anything/imagemagick/tests/test_core.py
+cli_anything/imagemagick/utils/imagemagick_backend.py
+cli_anything/imagemagick/utils/repl_skin.py
+cli_anything_imagemagick.egg-info/PKG-INFO
+cli_anything_imagemagick.egg-info/SOURCES.txt
+cli_anything_imagemagick.egg-info/dependency_links.txt
+cli_anything_imagemagick.egg-info/entry_points.txt
+cli_anything_imagemagick.egg-info/requires.txt
+cli_anything_imagemagick.egg-info/top_level.txt
