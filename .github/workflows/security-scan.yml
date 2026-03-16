@@ -1,0 +1,32 @@
+name: Security Scan
+on:
+  push:
+    branches: [ '**' ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Check for sensitive information
+      run: |
+        # Check for API keys, secrets, tokens
+        ! grep -r -E "(sk-[A-Za-z0-9]{36}|pk_[A-Za-z0-9]{36}|accessKey.*[A-Za-z0-9]{20,}|secretKey.*[A-Za-z0-9]{20,}|password.*=.*[A-Za-z0-9]{10,})" --include="*.md" --include="*.py" --include="*.go" --include="*.js" . | grep -v ".git" | grep -v "node_modules" | grep -v ".env" | grep -v "paperclip/docs" | wc -l > scan-result.txt
+        count=$(cat scan-result.txt)
+        if [ $count -gt 0 ]; then
+          echo "::error:: Found potential sensitive information leaks, please check before merging"
+          grep -r -E "(sk-[A-Za-z0-9]{36}|pk_[A-Za-z0-9]{36}|accessKey.*[A-Za-z0-9]{20,}|secretKey.*[A-Za-z0-9]{20,}|password.*=.*[A-Za-z0-9]{10,})" --include="*.md" --include="*.py" --include="*.go" --include="*.js" . | grep -v ".git" | grep -v "node_modules" | grep -v ".env" | grep -v "paperclip/docs"
+          exit 1
+        fi
+        echo "✅ No sensitive information found, scan passed"
+    - name: Check custom projects are ignored
+      run: |
+        # Check that custom projects are in .gitignore
+        if grep -q "项目库/AI音乐自媒体/" .gitignore && grep -q "项目库/晋江文学小说/" .gitignore; then
+          echo "✅ Custom projects correctly ignored"
+        else
+          echo "❌ Custom projects not ignored in .gitignore"
+          exit 1
+        fi

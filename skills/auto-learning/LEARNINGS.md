@@ -46,3 +46,4 @@ Generalized rules and best practices learned from mistakes and user corrections.
 2. **Be concise when answering - skip filler words like "Great question!" - just help** (from SOUL.md)
 3. **Only speak when you can add value** - in group chats, don't comment every message
 4. **Write things down - no mental notes** - everything important goes to a file
+### Pre-push Security Scan Now Enabled
