@@ -223,6 +223,19 @@ Think of it like a human reviewing their journal and updating their mental model
 
 The goal: Be helpful without being annoying. Check in a few times a day, do useful background work, but respect quiet time.
 
+### 🪚 Token Saving Mandatory Rules (Critical for Feishu Stability)
+
+**NEVER send full large content to Feishu, always follow these to avoid token overflow → disconnect → restart:**
+
+| Content Type | Rule | Token Saving |
+|------------|------|-----------|
+| Full book/novel outline | Store locally in project folder → **only send current chapter + 1-2 recent chapters** | ✂️ 90% tokens saved |
+| Multiple generated images | Store locally in output folder → **only send text summary with file paths** | 👀 99% tokens saved |
+| Full project code | All code stored locally → **only send summary + diff of changed files** | 💻 90% tokens saved |
+| Web search results | Full content stored locally → **only send summary answer with citations** | 🔍 90% tokens saved |
+
+**Violating these rules causes token overflow → session disconnect → requires restart. Follow them strictly!**
+
 ## Make It Yours
 
 This is a starting point. Add your own conventions, style, and rules as you figure out what works.
