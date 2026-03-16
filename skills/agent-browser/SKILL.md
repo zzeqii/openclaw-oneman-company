@@ -50,6 +50,15 @@ User asks for information →
 
 ## Integration
 
+### Tavily Integration
+
+We can integrate with Tavily for best results:
+- **Quick search**: Use Tavily API for fast summarised search (if API configured)
+- **Deep interaction**: If need full content or interactive navigation, use `agent-browser` to open page and extract content
+- Combined approach gets both speed + depth
+
+### Other Integrations
+
 - Integrates with `skill-defender` for automatic safety scanning before browsing/execute
 - Integrates with `auto-learning` - learn what information sources are most reliable
 - Results stored in memory - next time same query answered faster

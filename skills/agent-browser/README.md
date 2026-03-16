@@ -34,6 +34,15 @@ User asks for information →
 
 ## Integration
 
+### Tavily Integration
+
+We integrate with Tavily for best results:
+- **Quick search**: Use Tavily API for fast summarised search (if API configured)
+- **Deep interaction**: If you need full content or interactive navigation, `agent-browser` opens the page and extracts content automatically
+- Combined approach gives you both speed and depth
+
+### Other Integrations
+
 - **Safety**: All external content scanned by `skill-defender` before processing
 - **Learning**: Integrates with `auto-learning` - learns what information sources are most reliable
 - **Token saving**: Full pages stored locally, only summary sent to chat → token saving
