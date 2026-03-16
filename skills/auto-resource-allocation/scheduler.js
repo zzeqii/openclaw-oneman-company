@@ -25,40 +25,90 @@ class AutoResourceAllocator {
     this.priorityQueue = [
       {
         id: 'jinjiang-jinzhiqi-chapters',
-        name: '《金枝囚》第6-10章写作',
+        name: '《金枝囚》第11-15章写作',
+        type: 'jinjiang-chapters',
         priority: 0, // P0最高优先级
+        status: 'pending',
+        target: 5, // 本批次目标章数
+        completed: 0,
+        startChapter: 11,
+        endChapter: 15,
+        basePath: '/Users/bytedance/.openclaw/workspace/项目库/晋江文学小说/金枝囚/草稿/chapters/',
+        chapterTitles: {
+          11: '深夜的访客',
+          12: '绣活的销路',
+          13: '小丫鬟的病',
+          14: '母亲再次要钱',
+          15: '开水泼脸',
+        },
+      },
+      {
+        id: 'app-matrix-mindmap-frontend',
+        name: 'APP工具矩阵 - AI思维导图前端开发',
+        type: 'files-generation',
+        priority: 1, // P1
+        status: 'pending',
+        target: 6,
+        completed: 0,
+        pendingFiles: [
+          {
+            path: '/Users/bytedance/Documents/trae_projects/app_matrix/frontend/src/components/Mindmap.vue',
+            description: '思维导图可视化组件',
+            minSize: 1000,
+          },
+          {
+            path: '/Users/bytedance/Documents/trae_projects/app_matrix/frontend/src/views/Home.vue',
+            description: '首页生成入口页面',
+            minSize: 500,
+          },
+          {
+            path: '/Users/bytedance/Documents/trae_projects/app_matrix/frontend/src/router/index.js',
+            description: '路由配置',
+            minSize: 300,
+          },
+          {
+            path: '/Users/bytedance/Documents/trae_projects/app_matrix/frontend/src/App.vue',
+            description: '根组件',
+            minSize: 300,
+          },
+          {
+            path: '/Users/bytedance/Documents/trae_projects/app_matrix/frontend/package.json',
+            description: '前端依赖配置',
+            minSize: 300,
+          },
+          {
+            path: '/Users/bytedance/Documents/trae_projects/app_matrix/frontend/README.md',
+            description: '使用说明',
+            minSize: 500,
+          },
+        ],
+      },
+      {
+        id: 'ai-music-assets-generation',
+        name: 'AI音乐自媒体 - 生成账号运营素材',
+        type: 'files-generation',
+        priority: 2, // P2
         status: 'pending',
         target: 5,
         completed: 0,
-        path: '项目库/晋江文学小说/金枝囚/草稿/chapters/',
+        pendingFiles: [
+          {
+            path: '/Users/bytedance/.openclaw/workspace/项目库/AI音乐自媒体/运营材料/抖音简介.md',
+            description: '抖音账号简介',
+            minSize: 200,
+          },
+          {
+            path: '/Users/bytedance/.openclaw/workspace/项目库/AI音乐自媒体/运营材料/bilibili简介.md',
+            description: 'Bilibili账号简介',
+            minSize: 200,
+          },
+          {
+            path: '/Users/bytedance/.openclaw/workspace/项目库/AI音乐自媒体/运营材料/首支单曲prompt.md',
+            description: '首支单曲AI生成prompt',
+            minSize: 300,
+          },
+        ],
       },
-      {
-        id: 'app-matrix-dev',
-        name: 'APP工具矩阵 - 开发第一个工具',
-        priority: 1, // P1
-        status: 'pending',
-        target: 1,
-        completed: 0,
-        path: '~/Documents/trae_projects/app_matrix/',
-      },
-      {
-        id: 'coze-strategy-dev',
-        name: 'Coze自动策略Agent - 数据接入模块',
-        priority: 1, // P1
-        status: 'pending',
-        target: 1,
-        completed: 0,
-        path: '~/Documents/trae_projects/strategy_master/',
-      },
-      {
-        id: 'ai-music-assets',
-        name: 'AI音乐自媒体 - 生成运营素材',
-        priority: 2, // P2
-        status: 'pending',
-        target: 1,
-        completed: 0,
-        path: '项目库/AI音乐自媒体/',
-      }
     ];
     
     this.runningTasks = [];
