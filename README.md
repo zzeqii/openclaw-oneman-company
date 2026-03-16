@@ -29,13 +29,23 @@
   - ✅ After: `cli-anything-imagemagick` 本地压缩 → 只发文字结果 → token 减少 90%+ → 永远不超限
 - 业界最强可靠性：彻底解决AI遗忘+飞书连接断开两大痛点
 
-### 3. 全品类技能生态
+### 3. 混合编码架构 - 兼顾速度和质量
+独创混合编码模式，解决单模式痛点：
+
+| 模式 | Agent 纯生成 | OpenCode 纯执行 | **混合编码（我们的方案）** |
+|------|--------------|-----------------|---------------------|
+| 速度 | ⚡ 快 | 🐢 慢 | ⚡ **快** |
+| 质量 | ⭐ 中等（容易有编译错误） | ⭐⭐⭐⭐ 高 | ⭐⭐⭐⭐ **高** |
+| 落地性 | 需要人工调试 | 多轮很慢 | **Agent出架构 + OpenCode验证调试**，一次成型
+
+### 4. 全品类技能生态
 所有核心技能都已经配置好，开箱即用：
 
 | Skill | Description | Token Saving |
 |-------|-------------|-------------|
 | `cli-anything` | Build agent-native CLI harness for any software, solve Feishu token overflow | ✅ Local processing, 90% token saved |
 | `cli-anything-imagemagick` | Image compression/resize/optimization | ✅ All processing local |
+| `hybrid-coding` | Hybrid coding: LLM fast draft + OpenCode verification/debugging. Get both speed and quality | ✅ Draft local, summary only sent |
 | `smart-memory-recovery` | 4-way smart memory recovery after session restart | ✅ Check locally, summary only sent |
 | `auto-resource-allocation` | Auto parallel project scheduling by priority | ✅ Scheduling local, summary sent |
 | `jinjiang-original-novel-writer` | Jinjiang S-level ancient romance automatic writing | ✅ Outline local, only current chapter sent |
@@ -44,7 +54,7 @@
 | `abandoned-checkout-monitor` | E-commerce checkout funnel monitoring & recovery | ✅ Analysis local, report summary sent |
 | `mem0` | Vector semantic memory for long-term retrieval | ✅ Search local, results sent |
 
-### 4. 全栈能力集成
+### 5. 全栈能力集成
 - 内置火山ARK生成能力：图片/视频生成、多模态理解、代码生成
 - ClawHub技能生态：自动同步最新技能，支持零代码自定义扩展
 - Agent浏览器能力：自主网页搜索、爬取、信息提取，搜索效率提升80%
