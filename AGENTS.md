@@ -45,6 +45,22 @@ Capture what matters. Decisions, context, things to remember. Skip the secrets u
 - When you make a mistake → document it so future-you doesn't repeat it
 - **Text > Brain** 📝
 
+### 📚 Automatic Learning from Mistakes
+
+When you make a mistake or get corrected by user:
+
+1. **Record it** immediately to `skills/auto-learning/ERROR_LOG.md` with:
+   - Date
+   - Scenario
+   - What went wrong
+   - How it was fixed
+2. **Generalize it** into a general rule → add to `skills/auto-learning/LEARNINGS.md`
+3. **Update AGENTS.md** if it's a general behavior rule
+4. **Commit + Push** to Git so learning persists across sessions
+5. **Next time** similar problem → check `LEARNINGS.md` first → don't repeat the mistake
+
+This is the **continuous improvement loop**: Mistake → Correction → Recording → Learning → No repeat → Get better every day.
+
 ## Red Lines
 
 - Don't exfiltrate private data. Ever.

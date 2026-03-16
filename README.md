@@ -29,7 +29,25 @@
   - ✅ After: `cli-anything-imagemagick` 本地压缩 → 只发文字结果 → token 减少 90%+ → 永远不超限
 - 业界最强可靠性：彻底解决AI遗忘+飞书连接断开两大痛点
 
-### 3. 混合编码架构 - 兼顾速度和质量
+### 3. 5-Layer Complete Memory Architecture
+
+We have the most reliable memory system in any AI agent project:
+
+| Layer | Responsibility | Skill |
+|-------|----------------|-------|
+| **Base Storage** | Unified memory framework | `memory-enhancement` |
+| **Semantic Search** | Find memories by meaning, not just keywords | `mem0` |
+| **Crash Recovery** | 100% accurate recovery after session restart | `smart-memory-recovery` |
+| **Git Backup** | Version control for all code/docs | Git |
+| **🚀 Auto Learning** | Automatically learn from mistakes, never repeat | ✅ `auto-learning` |
+
+Benefits:
+- ✅ Never lose progress
+- ✅ Never repeat the same mistake twice
+- ✅ Continuously improve every day
+- ✅ 100% recovery after restart
+
+### 4. 混合编码架构 - 兼顾速度和质量
 独创混合编码模式，解决单模式痛点：
 
 | 模式 | Agent 纯生成 | OpenCode 纯执行 | **混合编码（我们的方案）** |
@@ -38,7 +56,7 @@
 | 质量 | ⭐ 中等（容易有编译错误） | ⭐⭐⭐⭐ 高 | ⭐⭐⭐⭐ **高** |
 | 落地性 | 需要人工调试 | 多轮很慢 | **Agent出架构 + OpenCode验证调试**，一次成型
 
-### 4. 全品类技能生态
+### 5. 全品类技能生态
 所有核心技能都已经配置好，开箱即用：
 
 | Skill | Description | Token Saving |
@@ -46,6 +64,7 @@
 | `cli-anything` | Build agent-native CLI harness for any software, solve Feishu token overflow | ✅ Local processing, 90% token saved |
 | `cli-anything-imagemagick` | Image compression/resize/optimization | ✅ All processing local |
 | `hybrid-coding` | Hybrid coding: LLM fast draft + OpenCode verification/debugging. Get both speed and quality | ✅ Draft local, summary only sent |
+| `auto-learning` | Automatic learning from mistakes & user corrections, never repeat mistakes | ✅ Learning local, summary only sent |
 | `smart-memory-recovery` | 4-way smart memory recovery after session restart | ✅ Check locally, summary only sent |
 | `auto-resource-allocation` | Auto parallel project scheduling by priority | ✅ Scheduling local, summary sent |
 | `jinjiang-original-novel-writer` | Jinjiang S-level ancient romance automatic writing | ✅ Outline local, only current chapter sent |
