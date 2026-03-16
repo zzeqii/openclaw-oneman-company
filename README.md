@@ -76,13 +76,28 @@ Workflow:
 User Requirement → 1. Agent generates architecture + code draft → 2. OpenCode verifies/compiles/debugs → 3. Merge and deliver
 ```
 
-### 5. Full-Stack Capability Integration
+### 5. Autonomous Browsing & Real-time Information
+- 🔍 **Full autonomous browser capability**: open web pages, click buttons, fill forms, take screenshots
+- 📡 **Real-time information retrieval**: search latest news, data, stats that training data doesn't have
+- ✅ **Fact verification**: verify claims against external sources
+- 🕷 **Structured content extraction**: get information from web pages automatically
+- 🔒 **Safe browsing**: integrates with `skill-defender` for automatic security scanning before navigation
+
+### 6. 🛡️ skill-defender Automatic Safety Protection
+Like an antivirus for AI agent:
+- Pre-installation scanning: check new skills for malicious code before installing
+- Pre-browsing scanning: check URLs against malicious/phishing database
+- Pre-execution scanning: block dangerous shell commands (`rm -rf /`, fork bombs, credential stealing)
+- Risk classification: 🔴 block high risk immediately, 🟡 warn medium risk, 🟢 allow low risk
+- Continuous learning: updates detection patterns from user decisions
+
+### 7. Full-Stack Capability Integration
 - Built-in Volcano Ark generation: image/video/code/multimodal
 - ClawHub skill ecosystem: automatic sync latest skills, zero-code custom extension
 - Autonomous browsing capability: web search, crawling, information extraction
 - Native Chinese ecosystem adaptation → no proxy required
 
-### 6. Out-of-the-Box Commercial Templates
+### 8. Out-of-the-Box Commercial Templates
 Five general-purpose templates for immediate commercialization:
 
 1. **AI Digital Human Self-Media**: Complete pipeline for account operation, content generation, publishing
@@ -136,6 +151,8 @@ All core skills are pre-configured, ready to use:
 | `cli-anything` | Build agent-native CLI harness for any software, solves Feishu token overflow | ✅ Local processing, 90% token saved |
 | `cli-anything-imagemagick` | Image compression/resize/optimization | ✅ All processing local |
 | `hybrid-coding` | Hybrid coding: LLM fast draft + OpenCode verification/debugging. Get both speed and quality | ✅ Draft local, summary only sent |
+| `agent-browser` | Autonomous web browsing/searching, get real-time latest information | ✅ Full page local, summary sent |
+| `skill-defender` | Automatic safety defender: scan for malicious code/commands before execution → prevents poisoning attacks | ✅ Scan local, summary sent |
 | `auto-learning` | Automatic learning from mistakes & user corrections, never repeat mistakes | ✅ Learning local, summary only sent |
 | `smart-memory-recovery` | Multi-verify smart memory recovery after session restart | ✅ Check locally, summary only sent |
 | `auto-resource-allocation` | Automatic parallel project scheduling by priority | ✅ Scheduling local, summary sent |
