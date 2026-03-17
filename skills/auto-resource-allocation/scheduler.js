@@ -6,6 +6,7 @@
  * 3. 多任务并行推进，充分利用空闲资源
  * 4. 完成阶段性任务自动触发汇报
  * 5. 任务执行器保障任务真正落地执行，不偷懒
+ * 6. 完整闭环：调度 → 生成 → 检测 → 汇报 → 下一个，全自动不中断
  */
 
 const os = require('os');
@@ -31,7 +32,7 @@ class AutoResourceAllocator {
         priority: 0, // P0最高优先级
         status: 'pending',
         target: 5, // 本批次目标章数
-        completed: 0,
+        completed: 1, // 第16章已完成
         startChapter: 16,
         endChapter: 20,
         basePath: '/Users/bytedance/.openclaw/workspace/项目库/晋江文学小说/金枝囚/草稿/chapters/',
@@ -50,30 +51,28 @@ class AutoResourceAllocator {
         priority: 1, // P1
         status: 'pending',
         target: 4,
-        completed: 0,
+        completed: 1, // dataFetcher.js已完成
         basePath: '/Users/bytedance/Documents/trae_projects/strategy_master/',
-        pendingFiles: [
-          {
-            path: '/Users/bytedance/Documents/trae_projects/strategy_master/src/data/dataFetcher.js',
-            description: '数据获取模块',
-            minSize: 500,
-          },
-          {
-            path: '/Users/bytedance/Documents/trae_projects/strategy_master/src/data/preprocessor.js',
-            description: '数据预处理模块',
-            minSize: 800,
-          },
-          {
-            path: '/Users/bytedance/Documents/trae_projects/strategy_master/src/data/validator.js',
-            description: '数据校验模块',
-            minSize: 400,
-          },
-          {
-            path: '/Users/bytedance/Documents/trae_projects/strategy_master/README-data.md',
-            description: '数据模块文档',
-            minSize: 300,
-          },
-        ],
+        config: {
+          type: 'files-generation',
+          pendingFiles: [
+            {
+              path: '/Users/bytedance/Documents/trae_projects/strategy_master/src/data/preprocessor.js',
+              description: '数据预处理模块',
+              minSize: 800,
+            },
+            {
+              path: '/Users/bytedance/Documents/trae_projects/strategy_master/src/data/validator.js',
+              description: '数据校验模块',
+              minSize: 400,
+            },
+            {
+              path: '/Users/bytedance/Documents/trae_projects/strategy_master/README-data.md',
+              description: '数据模块文档',
+              minSize: 300,
+            },
+          ],
+        }
       },
       {
         id: 'app-matrix-mindmap-frontend',
@@ -82,39 +81,37 @@ class AutoResourceAllocator {
         priority: 2, // P2
         status: 'pending',
         target: 6,
-        completed: 0,
-        pendingFiles: [
-          {
-            path: '/Users/bytedance/Documents/trae_projects/app_matrix/frontend/src/components/Mindmap.vue',
-            description: '思维导图可视化组件',
-            minSize: 1000,
-          },
-          {
-            path: '/Users/bytedance/Documents/trae_projects/app_matrix/frontend/src/views/Home.vue',
-            description: '首页生成入口页面',
-            minSize: 500,
-          },
-          {
-            path: '/Users/bytedance/Documents/trae_projects/app_matrix/frontend/src/router/index.js',
-            description: '路由配置',
-            minSize: 300,
-          },
-          {
-            path: '/Users/bytedance/Documents/trae_projects/app_matrix/frontend/src/App.vue',
-            description: '根组件',
-            minSize: 300,
-          },
-          {
-            path: '/Users/bytedance/Documents/trae_projects/app_matrix/frontend/package.json',
-            description: '前端依赖配置',
-            minSize: 300,
-          },
-          {
-            path: '/Users/bytedance/Documents/trae_projects/app_matrix/frontend/README.md',
-            description: '使用说明',
-            minSize: 500,
-          },
-        ],
+        completed: 1, // Mindmap.vue已完成
+        config: {
+          type: 'files-generation',
+          pendingFiles: [
+            {
+              path: '/Users/bytedance/Documents/trae_projects/app_matrix/frontend/src/views/Home.vue',
+              description: '首页生成入口页面',
+              minSize: 500,
+            },
+            {
+              path: '/Users/bytedance/Documents/trae_projects/app_matrix/frontend/src/router/index.js',
+              description: '路由配置',
+              minSize: 300,
+            },
+            {
+              path: '/Users/bytedance/Documents/trae_projects/app_matrix/frontend/src/App.vue',
+              description: '根组件',
+              minSize: 300,
+            },
+            {
+              path: '/Users/bytedance/Documents/trae_projects/app_matrix/frontend/package.json',
+              description: '前端依赖配置',
+              minSize: 300,
+            },
+            {
+              path: '/Users/bytedance/Documents/trae_projects/app_matrix/frontend/README.md',
+              description: '使用说明',
+              minSize: 500,
+            },
+          ],
+        }
       },
       {
         id: 'ai-music-assets-generation',
@@ -123,24 +120,22 @@ class AutoResourceAllocator {
         priority: 3, // P3
         status: 'pending',
         target: 3,
-        completed: 0,
-        pendingFiles: [
-          {
-            path: '/Users/bytedance/.openclaw/workspace/项目库/AI音乐自媒体/运营材料/抖音简介.md',
-            description: '抖音账号简介',
-            minSize: 200,
-          },
-          {
-            path: '/Users/bytedance/.openclaw/workspace/项目库/AI音乐自媒体/运营材料/bilibili简介.md',
-            description: 'Bilibili账号简介',
-            minSize: 200,
-          },
-          {
-            path: '/Users/bytedance/.openclaw/workspace/项目库/AI音乐自媒体/运营材料/首支单曲prompt.md',
-            description: '首支单曲AI生成prompt',
-            minSize: 300,
-          },
-        ],
+        completed: 1, // 抖音简介已完成
+        config: {
+          type: 'files-generation',
+          pendingFiles: [
+            {
+              path: '/Users/bytedance/.openclaw/workspace/项目库/AI音乐自媒体/运营材料/bilibili简介.md',
+              description: 'Bilibili账号简介',
+              minSize: 200,
+            },
+            {
+              path: '/Users/bytedance/.openclaw/workspace/项目库/AI音乐自媒体/运营材料/首支单曲prompt.md',
+              description: '首支单曲AI生成prompt',
+              minSize: 300,
+            },
+          ],
+        }
       },
     ];
     
@@ -234,7 +229,7 @@ class AutoResourceAllocator {
       
       const task = this.priorityQueue.find(t => t.id === 'jinjiang-jinzhiqi-chapters');
       if (task) {
-        task.completed = completedChapters - 5; // 前5章已完成
+        task.completed = completedChapters - task.startChapter;
         if (task.completed >= task.target && task.status === 'running') {
           this.completeTask(task);
         }
@@ -246,7 +241,7 @@ class AutoResourceAllocator {
       this.log(`检查《金枝囚》进度出错: ${e.message}`);
     }
     
-    // 可以在这里添加其他任务的进度检查
+    // 其他任务进度由executor检查
   }
 
   // 主调度循环
