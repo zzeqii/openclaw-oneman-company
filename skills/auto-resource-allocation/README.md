@@ -4,15 +4,17 @@
 
 ## Key Features
 
-- **Unlimited parallel projects** - Not limited to any fixed number, scales to any number of projects
-- **Dynamic priority-based allocation** - Higher priority projects get more resources
-- **⚡ Interactive responsiveness guarantee** - **Always reserves capacity for immediate user response**
-  - When user sends a message, background tasks are paused immediately
-  - User gets instant response, no waiting
-  - After interaction completes, background processing resumes automatically
+- **Full parallel execution** - Configurable max parallel tasks, all slots filled for maximum utilization
+- **Dynamic priority-based allocation** - Higher priority projects get earlier slots and more resources
+- **⚡ Interactive responsiveness guarantee** - **Always reserves 1 slot for immediate user response**
+  - User interaction always gets priority, background processing never blocks
+  - Your query always gets answered immediately
+- **✅ Automatic milestone reporting** - Every small milestone (each novel chapter / each code file) completes → automatically triggers progress report to user
+  - No need to ask for progress, you get notified immediately when something completes
+  - Aggregated progress push keeps you updated without frequent checks
 - **Automatic deadline tracking** - Integrated with `deadline-monitor` for graduated reminders (24h → 12h → 1h → 10m)
 - **Automatic progress tracking** - Tracks completion percentage for all projects
-- **Background batch processing** - Non-urgent maintenance tasks run when user is idle
+- **Background batch processing** - Keeps CPU busy all the time, no idle capacity wasted
 
 ## Priority Levels
 
