@@ -19,34 +19,67 @@ class AutoResourceAllocator {
       cpuThreshold: 70, // CPU低于70%可以新增任务
       memThreshold: 98, // macOS下内存大部分是缓存，调整阈值到98%
       checkInterval: 5 * 60 * 1000, // 每5分钟检查一次
-      maxParallelTasks: 3, // 最大并行任务数，保证质量
+      maxParallelTasks: 5, // 最大并行任务数（预留1个槽给对话响应）
+      autoReportOnMilestone: true, // 每个小里程碑完成自动汇报
     };
     
     this.priorityQueue = [
       {
         id: 'jinjiang-jinzhiqi-chapters',
-        name: '《金枝囚》第11-15章写作',
+        name: '《金枝囚》第16-20章写作',
         type: 'jinjiang-chapters',
         priority: 0, // P0最高优先级
         status: 'pending',
         target: 5, // 本批次目标章数
         completed: 0,
-        startChapter: 11,
-        endChapter: 15,
+        startChapter: 16,
+        endChapter: 20,
         basePath: '/Users/bytedance/.openclaw/workspace/项目库/晋江文学小说/金枝囚/草稿/chapters/',
         chapterTitles: {
-          11: '深夜的访客',
-          12: '绣活的销路',
-          13: '小丫鬟的病',
-          14: '母亲再次要钱',
-          15: '开水泼脸',
+          16: '侯府的赐宴',
+          17: '揭穿身份',
+          18: '刺杀',
+          19: '挡刀',
+          20: '入V前夜',
         },
+      },
+      {
+        id: 'coze-strategy-agent-data',
+        name: 'Coze自动策略Agent - 数据接入+预处理模块',
+        type: 'files-generation',
+        priority: 1, // P1
+        status: 'pending',
+        target: 4,
+        completed: 0,
+        basePath: '/Users/bytedance/Documents/trae_projects/strategy_master/',
+        pendingFiles: [
+          {
+            path: '/Users/bytedance/Documents/trae_projects/strategy_master/src/data/dataFetcher.js',
+            description: '数据获取模块',
+            minSize: 500,
+          },
+          {
+            path: '/Users/bytedance/Documents/trae_projects/strategy_master/src/data/preprocessor.js',
+            description: '数据预处理模块',
+            minSize: 800,
+          },
+          {
+            path: '/Users/bytedance/Documents/trae_projects/strategy_master/src/data/validator.js',
+            description: '数据校验模块',
+            minSize: 400,
+          },
+          {
+            path: '/Users/bytedance/Documents/trae_projects/strategy_master/README-data.md',
+            description: '数据模块文档',
+            minSize: 300,
+          },
+        ],
       },
       {
         id: 'app-matrix-mindmap-frontend',
         name: 'APP工具矩阵 - AI思维导图前端开发',
         type: 'files-generation',
-        priority: 1, // P1
+        priority: 2, // P2
         status: 'pending',
         target: 6,
         completed: 0,
@@ -87,9 +120,9 @@ class AutoResourceAllocator {
         id: 'ai-music-assets-generation',
         name: 'AI音乐自媒体 - 生成账号运营素材',
         type: 'files-generation',
-        priority: 2, // P2
+        priority: 3, // P3
         status: 'pending',
-        target: 5,
+        target: 3,
         completed: 0,
         pendingFiles: [
           {

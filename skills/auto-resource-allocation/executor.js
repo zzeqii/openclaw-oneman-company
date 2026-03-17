@@ -47,11 +47,18 @@ class TaskExecutor {
             if (fs.existsSync(nextFile.path) && fs.statSync(nextFile.path).size > (nextFile.minSize || 300)) {
               clearInterval(checkInterval);
               this.log(`[${task.name}] 文件 ${nextFile.path} 已生成，大小: ${fs.statSync(nextFile.path).size} bytes`);
+              task.completed++;
+              
+              // 配置了自动汇报，每个小里程碑完成自动触发汇报
+              if (this.scheduler.config.autoReportOnMilestone) {
+                this.log(`[自动汇报] ${task.name} - 已完成 ${task.completed}/${task.target} 个里程碑: ${nextFile.description} (${nextFile.path})`);
+                // 通过特殊日志标记让主Agent捕获并推送汇报
+                console.log(`[AUTO-REPORT] ${task.id} completed milestone: ${nextFile.description}`);
+              }
               
               // 如果队列空了，任务完成
               if (task.config.pendingFiles.length === 0) {
                 this.log(`[${task.name}] 所有文件生成完成，标记任务完成`);
-                task.completed = task.target;
                 this.scheduler.completeTask(task);
               }
               resolve(true);
@@ -99,6 +106,14 @@ class TaskExecutor {
               clearInterval(checkInterval);
               this.log(`[${task.name}] 第${chapterNum}章 ${title} 已完成，大小: ${fs.statSync(filePath).size} bytes`);
               task.completed++;
+              
+              // 配置了自动汇报，每章完成自动触发汇报
+              if (this.scheduler.config.autoReportOnMilestone) {
+                this.log(`[自动汇报] ${task.name} - 第${chapterNum}章 \"${title}\" 已完成 (${filePath})`);
+                // 通过特殊日志标记让主Agent捕获并推送汇报
+                console.log(`[AUTO-REPORT] ${task.id} completed milestone: 第${chapterNum}章 ${title}`);
+              }
+              
               if (task.completed >= task.target) {
                 this.log(`[${task.name}] 本批次${task.target}章全部完成，触发自动汇报`);
                 this.scheduler.completeTask(task);
