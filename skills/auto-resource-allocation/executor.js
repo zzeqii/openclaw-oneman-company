@@ -21,6 +21,21 @@ class TaskExecutor {
     console.log(logMsg);
   }
 
+  // spawn subagent to generate the file
+  spawnSubagent(task, config) {
+    // Use OpenClaw sessions_spawn to generate in background subagent
+    const { spawn } = require('child_process');
+    const scriptPath = path.join(__dirname, 'spawn-subagent.js');
+    const jsonConfig = JSON.stringify(config);
+    const child = spawn('node', [scriptPath, jsonConfig], {
+      cwd: process.cwd(),
+      stdio: 'inherit'
+    });
+    child.on('exit', (code) => {
+      this.log(`子agent退出，code: ${code}`);
+    });
+  }
+
   // 根据任务配置执行
   async executeTask(task) {
     this.working = true;
@@ -29,17 +44,20 @@ class TaskExecutor {
     
     try {
       // 如果任务有配置好的待生成文件队列，按队列执行
-      if (task.config && task.config.pendingFiles && task.config.pendingFiles.length > 0) {
-        const nextFile = task.config.pendingFiles.shift();
+      const pendingFiles = (task.config && task.config.pendingFiles) ? task.config.pendingFiles : task.pendingFiles;
+      if (pendingFiles && pendingFiles.length > 0) {
+        const nextFile = pendingFiles.shift();
         this.log(`[${task.name}] 需要生成文件: ${nextFile.path}`);
         
-        // 通知主Agent生成
-        globalThis.needsGeneration = {
-          type: task.config.type,
+        // Spawn subagent to generate directly, no need to wait for main
+        this.spawnSubagent(task, {
+          type: 'files-generation',
           taskId: task.id,
+          taskName: task.name,
           filePath: nextFile.path,
           description: nextFile.description,
-        };
+          minSize: nextFile.minSize || 300,
+        });
         
         return new Promise((resolve) => {
           // 检查文件是否生成完成
@@ -57,21 +75,24 @@ class TaskExecutor {
               }
               
               // 如果队列空了，任务完成
-              if (task.config.pendingFiles.length === 0) {
+              const pendingFiles = (task.config && task.config.pendingFiles) ? task.config.pendingFiles : task.pendingFiles;
+              if (pendingFiles.length === 0) {
                 this.log(`[${task.name}] 所有文件生成完成，标记任务完成`);
                 this.scheduler.completeTask(task);
               }
+              this.working = false;
+              this.currentTasks.delete(task.id);
               resolve(true);
             }
           }, 10000); // 每10秒检查一次
         });
-      } else if (task.type === 'jinjiang-chapters' && task.config.basePath && task.config.chapterTitles) {
-        const existingFiles = fs.readdirSync(task.config.basePath);
+      } else if (task.type === 'jinjiang-chapters' && task.basePath && task.chapterTitles) {
+        const existingFiles = fs.readdirSync(task.basePath);
         const completedChapters = existingFiles.filter(f => f.startsWith('第') && f.endsWith('.md')).length;
         const chapterNum = completedChapters + 1;
         
-        if (chapterNum > task.config.endChapter) {
-          this.log(`[${task.name}] 已完成到目标章节 ${task.config.endChapter}，标记任务完成`);
+        if (chapterNum > task.endChapter) {
+          this.log(`[${task.name}] 已完成到目标章节 ${task.endChapter}，标记任务完成`);
           task.completed = task.target;
           this.scheduler.completeTask(task);
           this.working = false;
@@ -79,7 +100,7 @@ class TaskExecutor {
           return Promise.resolve(false);
         }
         
-        const title = task.config.chapterTitles[chapterNum];
+        const title = task.chapterTitles[chapterNum];
         if (!title) {
           this.log(`[${task.name}] 找不到第${chapterNum}章标题，停止`);
           this.working = false;
@@ -88,17 +109,21 @@ class TaskExecutor {
         }
         
         const fileName = `第${chapterNum}章_${title}.md`;
-        const filePath = path.join(task.config.basePath, fileName);
+        const filePath = path.join(task.basePath, fileName);
         
         this.log(`[${task.name}] 开始写作第${chapterNum}章: ${title}`);
         
-        globalThis.needsGeneration = {
+        // Spawn subagent to generate directly
+        this.spawnSubagent(task, {
           type: 'jinjiang-chapter',
           taskId: task.id,
-          chapterNum,
-          title,
-          filePath,
-        };
+          taskName: task.name,
+          chapterNum: chapterNum,
+          title: title,
+          filePath: filePath,
+         大纲Path: '/Users/bytedance/.openclaw/workspace/项目库/晋江文学小说/金枝囚/《金枝囚》最终定版大纲_v10.0.md',
+          minSize: 2000,
+        });
         
         return new Promise((resolve) => {
           const checkInterval = setInterval(() => {
@@ -118,6 +143,8 @@ class TaskExecutor {
                 this.log(`[${task.name}] 本批次${task.target}章全部完成，触发自动汇报`);
                 this.scheduler.completeTask(task);
               }
+              this.working = false;
+              this.currentTasks.delete(task.id);
               resolve(true);
             }
           }, 10000); // 每10秒检查一次
