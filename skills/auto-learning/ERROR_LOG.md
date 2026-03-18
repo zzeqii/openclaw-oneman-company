@@ -114,3 +114,29 @@ Record of all errors, mistakes, and how they were fixed.
 > Always check actual file system to count completed chapters/files before reporting progress. Never rely on accumulated memory or parsed commit messages alone. Strictly follow triple verification: actual files > project document > Git commit > memory.
 
 **Status:** ✅ Fixed
+
+---
+
+## 2026-03-18 - Progress assessment memory disorder on APP工具矩阵
+
+**Scenario:** User asked about APP工具矩阵 progress, I incorrectly assessed that only basic framework was done when actually two tools were already partially developed.
+
+**What went wrong:**
+- I relied on outdated development schedule in architecture document that listed wrong tool selection
+- I didn't follow the mandatory rule: **代码项目强制核验** (Code project mandatory verification) which requires checking actual file structure and code before reporting progress
+- I trusted old memory and outdated docs instead of checking actual files on disk
+
+**Root cause:**
+- Violated the triple verification principle established in MEMORY.md: **"session重启后三重校验原则 → 第一步必须核对项目最新大纲/需求原文，然后核对Git实际提交 > 项目最新大纲原文 > 旧报告文件，永远以项目文档原文为准"**
+- Project documentation (ARCHITECTURE.md) wasn't updated in time after tool selection changed, I didn't verify against actual file system
+
+**How fixed:**
+- Re-checked all actual files on disk, clarified correct progress
+- Updated MEMORY.md with correct project status
+- Updated ARCHITECTURE.md with correct development schedule
+- Added stronger rule in LEARNINGS.md: **Code projects MUST count actual files before reporting progress**
+
+**General rule:**
+> Always follow triple verification order: **actual files on disk > Git commit logs > project documentation > old memory**. Never skip checking actual files for code projects. If in doubt, run `find` and `wc` immediately to confirm.
+
+**Status:** ✅ Fixed
