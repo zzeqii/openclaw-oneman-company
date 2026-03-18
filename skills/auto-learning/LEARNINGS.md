@@ -34,7 +34,11 @@ Generalized rules and best practices learned from mistakes and user corrections.
 1. **session restart → always run `smart-memory-recovery` first** - verify all project positions against Git + docs before continuing
 2. **Memory check order: `actual files on disk > Git log > documentation > old memory`** - always trust actual files first
 3. **Before reporting progress, always count actual files on disk** - never rely on memory or commit message parsing alone
-4. **Four-layer memory + learning**:
+4. **Code projects MUST follow the triple verification rule**:
+   - Always check actual file structure + code lines before reporting progress
+   - Never trust old memory or outdated documentation alone
+   - If in doubt, `find .` + `wc -l` immediately to confirm
+5. **Four-layer memory + learning**:
    - Base Storage: `memory-enhancement`
    - Semantic Search: `mem0`
    - Crash Recovery: `smart-memory-recovery`
