@@ -3,6 +3,8 @@
 
 Built on top of [Paperclip](https://github.com/paperclipai/paperclip) - adds complete production-grade system architecture for solo founders.
 
+**Core Concept**: Powered by **Autonomy** mechanism - you set goals and priorities, AI handles all execution with parallel sub-agents, reports milestones automatically. You only make key decisions.
+
 ## 🚀 System Architecture Overview
 
 ### 5-Layer Complete Memory Architecture
@@ -33,11 +35,16 @@ The most reliable memory system in any AI agent project:
 | **Token Overflow Protection** | All large assets stored locally, only summary sent → token consumption reduced 90%+ → never disconnect | ✅ |
 | **Private Project Protection** | Your custom private projects are in `.gitignore` → never committed to public repo | ✅ |
 
-### ⚡ Unlimited Parallel Project Scheduling
-- Supports **unlimited parallel projects** with dynamic priority-based resource allocation
-- Built-in graduated deadline reminder mechanism: 24h → 12h → 1h → 10m before deadline
-- **Interactive responsiveness guarantee**: Always reserves sufficient capacity for immediate response to user queries
-- Truly realize "one person is a whole company" without complex multi-agent configuration
+### ⚡ Autonomy - Fully Autonomous Parallel Execution Core
+**Autonomy is the core mechanism of oneman-company** - let AI do the work, you only need to make decisions:
+
+- **Autonomous Sub-agent Spawning**: Each project phase spawns an independent sub-agent
+- **Unlimited Parallel Projects**: Multiple projects run in parallel with dynamic priority-based resource allocation
+- **Small Node Auto-reporting**: Every small milestone (one chapter novel, one tool) is automatically reported
+- **No Manual Scheduling Needed**: System automatically schedules based on your priority settings
+- **Built-in graduated deadline reminder**: 24h → 12h → 1h → 10m before deadline
+- **Interactive responsiveness guarantee**: Always reserves sufficient capacity for immediate response to your questions
+- Truly realize **"One Person Is A Whole Company"** - you set goals and priorities, AI does all the rest
 
 ### 🎨 Hybrid Coding Architecture - Best of Both Worlds
 Novel hybrid approach gets both speed of general-purpose LLMs and accuracy of specialized code tools:
