@@ -42,9 +42,18 @@ private/
 *.pem
 *.p12
 
-# Memory files (keep core MEMORY.md as example)
-memory/*.md
-!memory/README.md
+# Memory files - mem9-db9 architecture:
+# - Binary indexes and vector storage stay local (~/.local/openclaw/)
+# - Only markdown text logs go to Git for collaboration
+~/.local/openclaw/
+*.db
+*.sqlite
+*.sqlite3
+*.vec
+data/
+memory/index/
+# Keep markdown logs
+!memory/*.md
 
 # Project sensitive data
 # Custom projects are not committed to public repo
