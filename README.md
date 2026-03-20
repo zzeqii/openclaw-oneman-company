@@ -7,15 +7,34 @@ Built on top of [Paperclip](https://github.com/paperclipai/paperclip) - adds com
 
 ## 🚀 System Architecture Overview
 
-### 5-Layer Complete Memory Architecture
+### 🧠 viking-memory - 5-Layer Defensive Complete Memory Architecture
 
-The most reliable memory system in any AI agent project:
+**viking-memory** is our原创五层防御记忆架构，integrates `mem9 + db9 + OpenViking + QMD`，systematically solves all 5 core memory problems that plague AI agents:
+
+| Problem | Solution | Layer |
+|------|----------|-------|
+| **Consistency Error** | Actual filesystem priority + automatic consistency check | L1: Base Verification |
+| **Retrieval Failure** | mem9 semantic memory + QMD document hybrid search | L2: Hybrid Retrieval |
+| **Performance Degradation** | 3-level cache + automatic hot/cold migration | L3: Cache Tiering |
+| **Information Leakage** | Git only stores text, all indexes stored locally | L4: Security Isolation |
+| **Black Box Untraceable** | db9 full链路 logging + performance metrics | L5: Monitoring Auditing |
+
+**viking-memory** completely solves these common problems:
+- ❌ *"AI always misremembers project progress, only reads documents doesn't check actual code"* → ✅ **Fixed**
+- ❌ *"Can't find what recorded earlier"* → ✅ **Fixed**  
+- ❌ *"Slower and slower after long time use"* → ✅ **Fixed**
+- ❌ *"Accidentally committed sensitive information to Git"* → ✅ **Fixed**
+- ❌ *"When something goes wrong, can't locate the problem"* → ✅ **Fixed**
+
+---
+
+### Original 5-Layer Complete Memory Architecture
 
 | Layer | Responsibility | Implementation |
 |-------|----------------|----------------|
 | **L1: Instant Session** | Current conversation context | Native runtime |
 | **L2: Daily Short-term** | Daily event logging | `memory/YYYY-MM-DD.md` |
-| **L3: Semantic Mid-term** | Retrieve memories by meaning, not just keywords | `mem0` vector database |
+| **L3: Semantic Mid-term** | Retrieve memories by meaning, not just keywords | `mem9`/`mem0` vector database |
 | **L4: Structured Long-term** | Curated core rules, decisions, project info, lessons | `MEMORY.md` + `auto-learning` |
 | **L5: Git Versioned Backup** | Permanent full version control, recover from any mistake | Git |
 | **🚀 Crash Recovery** | 100% accurate project recovery after session restart | `smart-memory-recovery` (verification order: *document on disk → Git commit → old memory*) |
@@ -146,6 +165,7 @@ All core skills are pre-configured, ready to use:
 | `deadline-monitor` | Automatic deadline tracking and graduated reminders | ✅ Checking local, alerts only sent |
 | `abandoned-checkout-monitor` | E-commerce checkout funnel monitoring & recovery | ✅ Analysis local, report summary sent |
 | `mem0` | Vector semantic memory for long-term retrieval | ✅ Search local, results sent |
+| `viking-memory` | 🆕 Five-layer defensive memory architecture, solves all 5 core memory problems (consistency/retrieval/performance/security/observability) | ✅ All indexed local, summary sent |
 
 ## 🤝 Contributing
 
