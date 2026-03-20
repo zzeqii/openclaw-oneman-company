@@ -140,3 +140,32 @@ Record of all errors, mistakes, and how they were fixed.
 > Always follow triple verification order: **actual files on disk > Git commit logs > project documentation > old memory**. Never skip checking actual files for code projects. If in doubt, run `find` and `wc` immediately to confirm.
 
 **Status:** ✅ Fixed
+
+---
+
+## 2026-03-20 - Progress report memory disorder - relied on old MEMORY instead of latest daily log
+
+**Scenario:** User asked for 11AM progress report, I incorrectly reported old planned tasks that were already paused waiting for user decision, instead of reading yesterday's actual daily log which clearly stated all projects are waiting.
+
+**What went wrong:**
+- I read `MEMORY.md` first, which still contained the old plan from 2026-03-14
+- I **skipped reading yesterday's daily log** which had the actual latest status (all projects waiting for user decision)
+- I violated the very first step of triple verification: **always check latest actual status first, don't trust old summary memory**
+- The rule says: "session重启后三重校验原则 → 第一步必须核对项目最新大纲/需求原文，然后核对Git实际提交 > 项目最新大纲原文 > 旧报告文件，永远以项目文档原文为准" — I skipped the first step
+
+**Root cause:**
+- Order of reading was wrong: I read long-term memory first, then checked daily log after being corrected
+- The correct order should be: **read today/yesterday daily log first → then read long-term memory → do Git/actual file verification**
+- Long-term memory (`MEMORY.md`) contains historical summaries that may be outdated if project status changed; daily logs always have the latest actual status
+
+**How fixed:**
+- Corrected the reading order in startup process:
+  1. First: read `yesterday.md` → `today.md` (get latest actual status)
+  2. Second: only if in main session, read `MEMORY.md` (get long-term rules/history)
+  3. Third: do actual file/Git verification for the projects mentioned
+- Enforced: **Daily log always overrides old long-term memory summary** because daily log is updated every day with actual status
+
+**General rule:**
+> Startup reading order is **mandatory**: (1) yesterday's daily log → (2) today's daily log → (3) MEMORY.md (main session only). Daily log has latest actual status, always trust daily log over old summaries in MEMORY. Never skip reading daily logs.
+
+**Status:** ✅ Fixed
