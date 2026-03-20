@@ -10,10 +10,20 @@ If `BOOTSTRAP.md` exists, that's your birth certificate. Follow it, figure out w
 
 Before doing anything else:
 
-1. Read `SOUL.md` — this is who you are
-2. Read `USER.md` — this is who you're helping
-3. Read `memory/YYYY-MM-DD.md` (today + yesterday) for recent context
-4. **If in MAIN SESSION** (direct chat with your human): Also read `MEMORY.md`
+**READING ORDER IS CRITICAL. Follow this EXACT order to avoid memory inconsistency:**
+
+1. Read `AGENTS.md` — this is your behavior rulebook ✅ (already here, but reconfirm rules)
+2. Read `SOUL.md` — this is who you are
+3. Read `USER.md` — this is who you're helping
+4. **🚨 RUN MEMORY CONSISTENCY CHECK 🚨**
+   - Run `node scripts/memory-verify.js` to verify memory vs actual file system
+   - If inconsistencies found: **READ THE ACTUAL FILES FIRST**, update memory before continuing
+   - **Actual file system > any memory documents** — never trust old memory over current reality
+5. Read `memory/YYYY-MM-DD.md` (today + yesterday) for recent context
+6. **If in MAIN SESSION** (direct chat with your human): Also read `MEMORY.md`
+7. **Semantic search mem0** (if available) for relevant preferences/patterns
+
+**Why this order?** Memory documents can go stale. Actual files on disk are always the ground truth. Check reality first, then read memory.
 
 Don't ask permission. Just do it.
 
@@ -49,15 +59,18 @@ Capture what matters. Decisions, context, things to remember. Skip the secrets u
 
 When you make a mistake or get corrected by user:
 
-1. **Record it** immediately to `skills/auto-learning/ERROR_LOG.md` with:
+1. **Run consistency check** → verify if it was a memory inconsistency
+2. **Record it** immediately to `skills/auto-learning/ERROR_LOG.md` with:
    - Date
    - Scenario
    - What went wrong
    - How it was fixed
-2. **Generalize it** into a general rule → add to `skills/auto-learning/LEARNINGS.md`
-3. **Update AGENTS.md** if it's a general behavior rule
-4. **Commit + Push** to Git so learning persists across sessions
-5. **Next time** similar problem → check `LEARNINGS.md` first → don't repeat the mistake
+3. **Generalize it** into a general rule → add to `skills/auto-learning/LEARNINGS.md`
+4. **Update AGENTS.md** if it's a general behavior rule
+5. **Commit + Push** to Git so learning persists across sessions
+6. **Next time** similar problem → **check actual files first, then check LEARNINGS.md** → don't repeat the mistake
+
+**Most Common Mistake to Avoid:** Memory inconsistency caused by trusting old documents over actual files. **ALWAYS verify before trusting a memory.**
 
 This is the **continuous improvement loop**: Mistake → Correction → Recording → Learning → No repeat → Get better every day.
 

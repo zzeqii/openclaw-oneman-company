@@ -1,12 +1,24 @@
 {
   "name": "oneman-company",
-  "version": "1.0.0",
-  "description": "一个人就是一家公司 —— 基于OpenClaw的全栈AI自动化操作系统",
+  "version": "2.0.0",
+  "description": "一个人就是一家公司 —— 基于OpenClaw的全栈AI自动化操作系统，新一代mem9-db9记忆架构",
   "main": "paperclip_daemon.js",
+  "type": "module",
   "scripts": {
     "start": "node paperclip_daemon.js & openclaw start",
     "daemon": "node paperclip_daemon.js",
     "sync": "git add . && git commit -m \"chore: sync project updates\" && git push",
+    "memory:install": "bash skills/mem9-db9-upgrade/scripts/install-deps.sh",
+    "memory:init": "bash skills/mem9-db9-upgrade/scripts/init-databases.sh",
+    "memory:start": "bash skills/mem9-db9-upgrade/scripts/start-memory-stack.sh",
+    "memory:health": "node skills/mem9-db9-upgrade/scripts/memory.js health",
+    "memory:stats": "node skills/mem9-db9-upgrade/scripts/memory.js stats",
+    "memory:check": "node skills/mem9-db9-upgrade/scripts/memory.js check-consistency",
+    "memory:migrate": "node skills/mem9-db9-upgrade/scripts/migrate-from-mem0.js",
+    "projects:discover": "node scripts/project-discovery-simple.js",
+    "projects:check": "node scripts/project-progress-check-simple.js",
+    "projects:full": "bash scripts/auto-project-association-simple.sh",
+    "projects:full-mem9": "bash scripts/auto-project-association.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -23,11 +35,16 @@
     "url": "https://github.com/zzeqii/oneman-company.git"
   },
   "dependencies": {
+    "@kevinzhow/openclaw-memory-openviking": "^0.1.1",
+    "@mem9/mem9": "^0.3.5",
+    "@tobilu/qmd": "^2.0.1",
     "@volcengine/ark": "^1.0.1",
     "axios": "^1.6.7",
     "cheerio": "^1.0.0-rc.12",
+    "get-db9": "^0.6.1",
     "iconv-lite": "^0.7.2",
     "node-fetch": "^3.3.2",
-    "puppeteer": "^24.39.1"
+    "puppeteer": "^24.39.1",
+    "walk": "^2.3.15"
   }
 }
