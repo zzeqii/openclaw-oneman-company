@@ -38,7 +38,11 @@ Generalized rules and best practices learned from mistakes and user corrections.
    - Always check actual file structure + code lines before reporting progress
    - Never trust old memory or outdated documentation alone
    - If in doubt, `find .` + `wc -l` immediately to confirm
-5. **Four-layer memory + learning**:
+5. **Startup reading order is mandatory**:
+   - (1) yesterday's daily log → (2) today's daily log → (3) MEMORY.md (main session only)
+   - Daily log always has the latest actual status, always trust daily log over old summaries in MEMORY
+   - Never skip reading daily logs
+6. **Four-layer memory + learning**:
    - Base Storage: `memory-enhancement`
    - Semantic Search: `mem0`
    - Crash Recovery: `smart-memory-recovery`
